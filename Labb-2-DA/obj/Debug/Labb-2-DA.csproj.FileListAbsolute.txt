@@ -1,0 +1,7 @@
+C:\Users\victo\Desktop\Labbar D&A\Labb-2-DA\Labb-2-DA\bin\Debug\Labb-2-DA.exe.config
+C:\Users\victo\Desktop\Labbar D&A\Labb-2-DA\Labb-2-DA\bin\Debug\Labb-2-DA.exe
+C:\Users\victo\Desktop\Labbar D&A\Labb-2-DA\Labb-2-DA\bin\Debug\Labb-2-DA.pdb
+C:\Users\victo\Desktop\Labbar D&A\Labb-2-DA\Labb-2-DA\obj\Debug\Labb-2-DA.csprojAssemblyReference.cache
+C:\Users\victo\Desktop\Labbar D&A\Labb-2-DA\Labb-2-DA\obj\Debug\Labb-2-DA.csproj.CoreCompileInputs.cache
+C:\Users\victo\Desktop\Labbar D&A\Labb-2-DA\Labb-2-DA\obj\Debug\Labb-2-DA.exe
+C:\Users\victo\Desktop\Labbar D&A\Labb-2-DA\Labb-2-DA\obj\Debug\Labb-2-DA.pdb
