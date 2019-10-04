@@ -12,29 +12,33 @@ namespace Labb_2_DA
         static void Main(string[] args)
         {
             int[] data = ReadIntfile("largeints"); // Also try "largeints"!
-            int N = 2000;    // Change to some smaller number to test on part of array.
             int max = 10000;
-            PrintData(N, max, data);
+            PrintData(max, data);
             Shuffle(data, 0, data.Length-1);
-
-            int[] test = {4, 5, 6, 2};
+            if (IsSorted(data, 0, max)) Console.WriteLine("Array is sorted.\n");
+            else Console.WriteLine("Array is NOT sorted.\n");
 
             long before = Environment.TickCount;
-            QuickSortClass.QuickSort(test, 0, test.Length - 1);
+            QuickSortClass.QuickSort(data, 0, data.Length - 1);
             long after = Environment.TickCount;
-            Console.WriteLine((after - before) / 1000.0 + " seconds.");
+            
 
-            PrintData(N, max, data);
+            PrintData(max, data);
+            if (IsSorted(data, 0, max)) Console.WriteLine("Array is sorted.\n");
+            else Console.WriteLine("Array is NOT sorted.\n");
+            Console.WriteLine((after - before) / 1000.0 + " seconds.");
             Console.ReadLine();
         }
 
-        static void PrintData(int N, int max, int[] data)
+        static void PrintData(int max, int[] data)
         {
-            if (N <= max)
+            for (int i = 0; i < data.Length; i++)
             {
-                for (int i = 0; i < N; i++) { System.Console.Write(data[i] + " "); }
-                System.Console.Write("\n\n");
+                System.Console.Write(data[i] + " ");
+                if (i > max) break;
             }
+            System.Console.Write("\n\n");
+
         }
 
         static int[] ReadIntfile(String filename)
@@ -59,6 +63,25 @@ namespace Labb_2_DA
                 int r = i + rand.Next(hi + 1 - i);     // between i and hi
                 int t = a[i]; a[i] = a[r]; a[r] = t;
             }
+        }
+
+        // Checks if the first n element of a are in sorted order.
+        private static bool IsSorted(int[] a, int lo, int hi)
+        {
+            int flaws = 0;
+            for (int i = lo + 1; i <= hi; i++)
+            {
+                if (a[i] < a[i - 1])
+                {
+                    if (flaws++ >= 10)
+                    {
+                        System.Console.WriteLine("...");
+                        break;
+                    }
+                    System.Console.WriteLine("a[" + (i - 1) + "] = " + a[i - 1] + ", a[" + i + "] = " + a[i]);
+                }
+            }
+            return flaws == 0;
         }
     }
 }

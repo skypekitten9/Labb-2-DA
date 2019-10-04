@@ -11,53 +11,33 @@ namespace Labb_2_DA
         public static void QuickSort(int[] array, int lo, int hi)
         {
             if (!(hi > lo)) return;
-            int mid = Partition(array, lo, lo, hi);
-            QuickSort(array, lo, mid - 1);
-            QuickSort(array, mid + 1, hi);
+            int pivot = Partition(array, lo, hi);
+            QuickSort(array, lo, pivot - 1);
+            QuickSort(array, pivot + 1, hi);
         }
 
-        static int Partition(int[] array, int pivot, int lo, int hi)
+        static int Partition(int[] array, int lo, int hi)
         {
-            //1
-            int temp = array[hi];
-            array[hi] = array[pivot];
-            array[pivot] = temp;
-            pivot = hi;
-
-            //2-4
-            int smaller = 0, larger = 0;
-            bool foundLow = false, foundHigh = false;
-            for (int i = lo; i <= hi; i++)
+            //Swap(array, lo, hi);              //Use lo as pivot
+            //Swap(array, (hi - lo) / 2, hi);   //Use middle as pivot
+            int i = lo;
+            for (int j = lo; j < hi; j++)
             {
-                if (array[i] > array[pivot] && !foundHigh)
+                if(array[j] < array[hi])
                 {
-                    larger = i;
-                    foundHigh = true;
+                    Swap(array, i, j);
+                    i++;
                 }
-                if (array[hi - i + lo] < array[pivot] && !foundLow)
-                {
-                    smaller = hi - i + lo;
-                    foundLow = true;
-                }
-                if (foundLow && foundHigh) break;
             }
+            Swap(array, i, hi);
+            return i;
+        }
 
-            //5
-            if (larger < smaller && foundHigh && foundLow)
-            {
-                temp = array[larger];
-                array[larger] = array[smaller];
-                array[smaller] = temp;
-                pivot = Partition(array, pivot, lo, hi);
-            }
-            else if (foundHigh)
-            {
-                temp = array[larger];
-                array[larger] = array[pivot];
-                array[pivot] = temp;
-                pivot = larger;
-            }
-            return pivot;
+        static void Swap(int[] array, int a, int b)
+        {
+            int temp = array[a];
+            array[a] = array[b];
+            array[b] = temp;
         }
     }
 }
