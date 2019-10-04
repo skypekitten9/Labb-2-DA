@@ -15,9 +15,12 @@ namespace Labb_2_DA
             int N = 2000;    // Change to some smaller number to test on part of array.
             int max = 10000;
             PrintData(N, max, data);
+            Shuffle(data, 0, data.Length-1);
+
+            int[] test = {4, 5, 6, 2};
 
             long before = Environment.TickCount;
-            MergeSortClass.MergeSort(data);
+            QuickSortClass.QuickSort(test, 0, test.Length - 1);
             long after = Environment.TickCount;
             Console.WriteLine((after - before) / 1000.0 + " seconds.");
 
@@ -47,23 +50,15 @@ namespace Labb_2_DA
             return ints;
         }
 
-        // Checks if the first n element of a are in sorted order.
-        private static bool IsSorted(int[] a, int lo, int hi)
+        // Shuffles the first n elements of a.
+        public static void Shuffle(int[] a, int lo, int hi)
         {
-            int flaws = 0;
-            for (int i = lo + 1; i <= hi; i++)
+            Random rand = new Random();
+            for (int i = lo; i <= hi; i++)
             {
-                if (a[i] < a[i - 1])
-                {
-                    if (flaws++ >= 10)
-                    {
-                        System.Console.WriteLine("...");
-                        break;
-                    }
-                    System.Console.WriteLine("a[" + (i - 1) + "] = " + a[i - 1] + ", a[" + i + "] = " + a[i]);
-                }
+                int r = i + rand.Next(hi + 1 - i);     // between i and hi
+                int t = a[i]; a[i] = a[r]; a[r] = t;
             }
-            return flaws == 0;
         }
     }
 }

@@ -10,10 +10,7 @@ namespace Labb_2_DA
     {
         public static int[] MergeSort(int[] array)
         {
-            if (array.Length == 1)
-            {
-                return array;
-            }
+            if (array.Length == 1) return array;
             int[] arrayLow = array.Take(array.Length / 2).ToArray();
             int[] arrayHigh = array.Skip(array.Length / 2).ToArray();
             MergeSort(arrayLow);
