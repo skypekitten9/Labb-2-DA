@@ -13,14 +13,14 @@ namespace Labb_2_DA
         {
             int[] data = ReadIntfile("smallints"); // Also try "largeints"!
             int max = 10000;
-            int[] test = { 4, 5, 2, 4, 1, 5 };
+            long before, after;
 
-            //QuickSort
+            //QuickSort och uppgift 2
             Shuffle(data, 0, data.Length - 1);
-            long before = Environment.TickCount;
-            QuickSortClass.QuickSort(test, 0, test.Length - 1);
-            long after = Environment.TickCount;
-            if (IsSorted(test, 0, test.Length - 1))
+            before = Environment.TickCount;
+            QuickSortClass.QuickSort(data, 0, data.Length - 1);
+            after = Environment.TickCount;
+            if (IsSorted(data, 0, 5 - 1))
             {
                 System.Console.WriteLine((after - before) / 1000.0 + " seconds with QuickSort.");
             }
@@ -35,7 +35,6 @@ namespace Labb_2_DA
                 System.Console.WriteLine((after - before) / 1000.0 + " seconds with MergeSort.");
             }
 
-
             Console.ReadLine();
         }
 
@@ -46,8 +45,7 @@ namespace Labb_2_DA
                 System.Console.Write(data[i] + " ");
                 if (i > max) break;
             }
-            System.Console.Write("\n\n");
-
+            System.Console.Write("\n");
         }
 
         static int[] ReadIntfile(String filename)
@@ -66,7 +64,7 @@ namespace Labb_2_DA
         // Shuffles the first n elements of a.
         public static void Shuffle(int[] a, int lo, int hi)
         {
-            Console.WriteLine("Shuffle...");
+            Console.WriteLine("Shuffle...."); 
             Random rand = new Random();
             for (int i = lo; i <= hi; i++)
             {

@@ -18,22 +18,27 @@ namespace Labb_2_DA
 
         static int Partition(int[] array, int lo, int hi)
         {
-            //Swap(array, lo, hi);              //Use lo as pivot
-            //Swap(array, (hi - lo) / 2, hi);   //Use middle as pivot
             int i = lo;
-            for (int j = lo; j < hi; j++)
+            int j = hi + 1;
+            int pivot = array[lo];
+            while (true)
             {
-                if(array[j] < array[hi])
+                while(array[++i] < pivot)
                 {
-                    Swap(array, i, j);
-                    i++;
+                    if (i == hi) break;
                 }
+                while(pivot < array[--j])
+                {
+                    if (j == lo) break;
+                }
+                if (i>=j) break;
+                Swap(array, i, j);
             }
-            Swap(array, i, hi);
-            return i;
+            Swap(array, lo, j);
+            return j;
         }
 
-        static void Swap(int[] array, int a, int b)
+        public static void Swap(int[] array, int a, int b)
         {
             int temp = array[a];
             array[a] = array[b];
