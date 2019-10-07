@@ -11,22 +11,31 @@ namespace Labb_2_DA
     {
         static void Main(string[] args)
         {
-            int[] data = ReadIntfile("largeints"); // Also try "largeints"!
+            int[] data = ReadIntfile("smallints"); // Also try "largeints"!
             int max = 10000;
-            PrintData(max, data);
-            Shuffle(data, 0, data.Length-1);
-            if (IsSorted(data, 0, max)) Console.WriteLine("Array is sorted.\n");
-            else Console.WriteLine("Array is NOT sorted.\n");
+            int[] test = { 4, 5, 2, 4, 1, 5 };
 
+            //QuickSort
+            Shuffle(data, 0, data.Length - 1);
             long before = Environment.TickCount;
-            QuickSortClass.QuickSort(data, 0, data.Length - 1);
+            QuickSortClass.QuickSort(test, 0, test.Length - 1);
             long after = Environment.TickCount;
-            
+            if (IsSorted(test, 0, test.Length - 1))
+            {
+                System.Console.WriteLine((after - before) / 1000.0 + " seconds with QuickSort.");
+            }
 
-            PrintData(max, data);
-            if (IsSorted(data, 0, max)) Console.WriteLine("Array is sorted.\n");
-            else Console.WriteLine("Array is NOT sorted.\n");
-            Console.WriteLine((after - before) / 1000.0 + " seconds.");
+            //MergeSort
+            Shuffle(data, 0, data.Length - 1);
+            before = Environment.TickCount;
+            MergeSortClass.MergeSort(data);
+            after = Environment.TickCount;
+            if (IsSorted(data, 0, max - 1))
+            {
+                System.Console.WriteLine((after - before) / 1000.0 + " seconds with MergeSort.");
+            }
+
+
             Console.ReadLine();
         }
 
@@ -57,6 +66,7 @@ namespace Labb_2_DA
         // Shuffles the first n elements of a.
         public static void Shuffle(int[] a, int lo, int hi)
         {
+            Console.WriteLine("Shuffle...");
             Random rand = new Random();
             for (int i = lo; i <= hi; i++)
             {
